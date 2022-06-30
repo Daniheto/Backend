@@ -5,7 +5,7 @@ class contenedor {
     this.archivo = archivo;
   }
 
-  save() {
+  save(obj) {
     const archivo = this.archivo;
     async () => {
       try {
@@ -68,9 +68,17 @@ class contenedor {
     };
   }
 }
-const producto1 = {
-  title: "producto1",
-  price: 100,
-  thumbnail: "https://picsum.photos/200",
-  id: 1,
-};
+const producto1 = [
+  {
+    title: "producto1",
+    price: 100,
+    thumbnail: "https://picsum.photos/200",
+    id: 1,
+  },
+  {
+    title: "producto2",
+    price: 200,
+    thumbnail: "https://picsum.photos/200",
+    id: 2,
+  },
+];
