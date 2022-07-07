@@ -1,47 +1,40 @@
-const express = require("express");
-const miApp = express();
+import express, { urlencoded, Router } from "express";
+import multer from "express";
 
-const fs = require("fs");
+const app = express();
 
-class contenedor {
-  constructor(archivo) {
-    this.archivo = archivo;
-  }
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
-  getAll() {
-    const productos = fs.readFileSync(this.archivo, "utf-8");
-    return JSON.parse(productos);
-  }
+const productos = [];
 
-  getRandom() {
-    const productosObetenidos = this.getAll();
-    const random = Math.floor(Math.random() * productosObetenidos.length);
-    return random;
-  }
-}
-
-const contenedor1 = new contenedor("productos.txt");
-contenedor1.getRandom();
-
-function productoEnPantalla() {
-  const resultado = contenedor1.getAll();
-}
-
-miApp.get("/productos", (req, res) => {
-  res.send(productoEnPantalla());
+app.get("/api/productos", (req, res) => {
+  res.json(productos);
 });
 
-function productoRandomEnPantalla() {
-  const resultadoRandom = contenedor1.getRandom();
-}
-
-miApp.get("/productoRandom", (req, res) => {
-  res.send(productoRandomEnPantalla());
+app.get("/api/productos/:id", (req, res) => {
+  const id = parseInt(req.params.id);
 });
 
-const PORT = process.env.PORT || 8080;
+app.post("/api/palabras", (req, res) => {
+  let i = 0;
+  productos.push(req.body);
+  res.json(req.body + i++);
+});
 
-const server = miApp.listen(PORT, () => {
+app.put("/api/productos/:id", (req, res) => {
+  productos.push(req.params.id);
+  res.json(req.body);
+});
+
+app.delete("/api/productos/:id", (req, res) => {
+  productos.push(req.params.id);
+  res.json([]);
+});
+
+const PORT = 8081;
+
+const server = app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${server.address().port}`);
 });
 
