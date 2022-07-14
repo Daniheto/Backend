@@ -10,11 +10,11 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.render("inicio", { productos });
-  res.redirect("/productos");
 });
 
 app.post("/productos", (req, res) => {
   productos.push(req.body);
+  console.log(productos);
   res.redirect("/");
 });
 
