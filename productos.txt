@@ -1,0 +1,20 @@
+[
+    {
+        "nombre": "remera",
+        "precio": 1.000,
+        "foto": "https://picsum.photos/200",
+        "id": 1
+    },
+    {
+        "nombre": "pantalon",
+        "precio": 1.500,
+        "foto": "https://picsum.photos/200",
+        "id": 2
+    },
+    {
+        "nombre": "gorra",
+        "precio": 750,
+        "foto": "https://picsum.photos/200",
+        "id": 3
+    }
+]

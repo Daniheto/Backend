@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1 style="color: blue">Ingrese producto</h1>
+      <br />
+
+      <form action="/productos" method="post">
+        <div>
+          <label for="nombre"><b>Nombre</b></label>
+          <input type="text" id="nombre" name="nombre" />
+        </div>
+        <br />
+        <div>
+          <label for="precio"><b>Precio</b></label>
+          <input type="number" id="precio" name="precio" />
+        </div>
+        <br />
+        <div>
+          <label for="foto"><b>Foto URL</b></label>
+          <input type="file" id="foto" name="foto" />
+        </div>
+        <br />
+        <button>Enviar</button>
+      </form>
+    </div>
+    <hr />
+    <div id="products">
+      <h2 style="color: blue">Vista de Productos</h2>
+      <br />
+      <table onsubmit="return addProduct()">
+        <tr style="color: red">
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Foto</th>
+        </tr>
+        <tr>
+          <td>producto.nombre</td>
+          <td>producto.precio</td>
+          <td>producto.foto</td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+    <div>
+      <h2 style="color: blue">Centro de Mensajes</h2>
+      <br />
+
+      <div id="messages"></div>
+
+      <form onsubmit="return addMessage()" autocomplete="off">
+        <input type="text" id="username" placeholder="Tu nombre" />
+        <input type="text" id="texto" placeholder="Cuentanos algo..." />
+        <input type="submit" value="Enviar !" />
+      </form>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
