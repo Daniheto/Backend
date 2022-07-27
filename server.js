@@ -4,6 +4,7 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 
 let messages = [];
+let products = [];
 
 app.use(express.static("public"));
 
@@ -14,6 +15,16 @@ io.on("connection", function (socket) {
   socket.on("new-message", function (data) {
     messages.push(data);
     io.sockets.emit("messages", messages);
+  });
+});
+
+io.on("connection", function (socket) {
+  console.log("Un cliente se ha conectado");
+  socket.emit("products", products);
+
+  socket.on("new-product", function (data) {
+    products.push(data);
+    io.sockets.emit("products", products);
   });
 });
 

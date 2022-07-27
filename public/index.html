@@ -12,7 +12,7 @@
       <h1 style="color: blue">Ingrese producto</h1>
       <br />
 
-      <form action="/productos" method="post">
+      <form onsubmit="return addProduct()" autocomplete="off">
         <div>
           <label for="nombre"><b>Nombre</b></label>
           <input type="text" id="nombre" name="nombre" />
@@ -27,29 +27,17 @@
           <label for="foto"><b>Foto URL</b></label>
           <input type="file" id="foto" name="foto" />
         </div>
+        <div>
+          <input type="submit" value="Enviar" />
+        </div>
         <br />
-        <button>Enviar</button>
       </form>
     </div>
     <hr />
     <div id="products">
       <h2 style="color: blue">Vista de Productos</h2>
       <br />
-      <table onsubmit="return addProduct()">
-        <tr style="color: red">
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Foto</th>
-        </tr>
-        <tr>
-          <td>producto.nombre</td>
-          <td>producto.precio</td>
-          <td>producto.foto</td>
-        </tr>
-      </table>
-    </div>
-    <hr />
-    <div>
+
       <h2 style="color: blue">Centro de Mensajes</h2>
       <br />
 
@@ -63,5 +51,6 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="/public/js/tabla.js"></script>
   </body>
 </html>

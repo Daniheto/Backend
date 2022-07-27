@@ -1,16 +1,3 @@
-const fs = require("fs");
-
-const archivo = async () => {
-  try {
-    let archivo = await fs.promises.readFile("productos.txt", "utf-8");
-    let obj = JSON.parse(archivo);
-    console.log(obj);
-  } catch (error) {
-    console.log(`error en lectura: ${error}`);
-  }
-};
-console.log(archivo);
-
 let socket = io.connect();
 socket.on("messages", function (data) {
   console.log(data);
