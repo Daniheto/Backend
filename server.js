@@ -3,6 +3,8 @@ const { Router, json } = require("express");
 
 const app = express();
 
+app.use(express.static("public"));
+
 const routerProductos = Router();
 const routerCarrito = Router();
 
@@ -14,7 +16,28 @@ routerCarrito.use(express.json());
 routerProductos.use(express.urlencoded({ extended: true }));
 routerCarrito.use(express.urlencoded({ extended: true }));
 
-const productos = [];
+const productos = [
+  {
+    nombre: "producto1",
+    descripcion: "descripcion1",
+    foto: "https://picsum.photos/200",
+    precio: 2,
+    codigo: 1,
+    stock: 10,
+    timestamp: 1,
+    id: 1,
+  },
+  {
+    nombre: "producto2",
+    descripcion: "descripcion2",
+    foto: "https://picsum.photos/200",
+    precio: 2,
+    codigo: 2,
+    stock: 10,
+    timestamp: 1,
+    id: 2,
+  },
+];
 
 const validar = (req, res, next) => {
   if (req.headers.admin === true) {
@@ -127,7 +150,7 @@ routerCarrito.delete("/:id/productos/:id_prod", (req, res) => {
   res.json(carrito);
 });
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 const server = app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${server.address().port}`);
